@@ -1,58 +1,50 @@
-# Data Hiding in Medical Images using Deep Neural Networks  
+# Smart Mark Entry System  
 
 ## Overview  
-Medical image security is critical for ensuring patient safety and preventing misdiagnosis caused by tampered or misidentified images.  
-This project proposes a **Deep Learning–based steganography system** that hides sensitive patient information inside medical images using a **Denoising Autoencoder (DAE)**.  
-The embedded data can later be extracted by authorized personnel, ensuring **confidentiality, authenticity, and integrity** of medical records.  
+The **Smart Mark Entry System (SMS)** is designed to automate the tedious manual mark entry process by recognizing handwritten digits from scanned answer sheets using **Convolutional Neural Networks (CNNs)**. The system ensures faster, more accurate mark entry, reduces human errors, and directly updates results into a database.  
 
 ---
 
-##  Features  
-- **Denoising Autoencoder Model** for robust embedding and recovery of hidden data.  
-- **Elliptic Curve Cryptography (ECC)** for encrypting patient information before embedding.  
-- **BLAKE3 Hashing** to verify data integrity during transmission.  
-- High-quality reconstruction of hidden images with **low loss**.  
-- Compatible with multiple medical imaging modalities (MRI, Retinal scans).  
-- Outperforms traditional techniques (LSB, DCT, GAN) in PSNR and SSIM scores.  
+## Features  
+- Handwritten digit recognition using CNN trained on **MNIST dataset**.  
+- Automated **mark entry into database** with student roll number mapping.  
+- Supports image input through **webcam or phone camera**.  
+- Preprocessing, segmentation, cropping, and feature extraction of scanned images.  
+- GUI built with **Tkinter** for easy faculty and student interaction.  
+- Email notifications for mark updates (faculty → student, student → faculty).  
+- Separate login portals for **faculty** and **students** with role-based access.  
 
 ---
 
 ## Tech Stack  
 - **Languages**: Python  
-- **Libraries/Frameworks**: TensorFlow, Keras, NumPy, OpenCV, Matplotlib  
-- **Cryptography**: Elliptic Curve Cryptography (ECC)  
-- **Hashing**: BLAKE3  
-- **Datasets**:  
-  - **ADNI** – Alzheimer’s Disease Neuroimaging Initiative (MRI Scans)  
-  - **DRIVE** – Retinal Vessel Segmentation Dataset  
+- **Libraries**: TensorFlow, Keras, NumPy, OpenCV, Tkinter, Matplotlib, Pillow, Scikit-learn  
+- **Database**: SQLite  
+- **Frontend**: Tkinter GUI  
 
 ---
 
-## Workflow  
-1. **Upload Medical Image** (`.jpg` / `.png`)  
-2. **Encrypt Patient Data** using ECC → converted into image form.  
-3. **Embedding Process**  
-   - Cover image + Encrypted info image → fed into **DAE Encoder**  
-   - Produces **Container Image** (looks identical to original cover).  
-4. **Hashing**  
-   - Generate BLAKE3 hash of container image → transmitted alongside.  
-5. **Extraction Process (Receiver)**  
-   - Verify image integrity using hash.  
-   - Use **DAE Decoder** to reconstruct hidden patient information.  
-   - Decrypt using ECC to recover original patient data.  
+## Modules  
+1. **User Module** – Faculty & Student login/registration.  
+2. **Preprocessing Module** – Cropping, resizing, background suppression.  
+3. **Segmentation Module** – Identifying and extracting individual characters.  
+4. **CNN Module** – Handwritten digit recognition and training on MNIST.  
+5. **Database Module** – Inserting/updating student marks in SQLite.  
+6. **Notification Module** – Automated email alerts for marks.  
+7. **GUI Module** – Interactive interface for faculty and students.  
 
 ---
 
-## Results  
-- **ADNI Dataset (MRI scans)**:  
-  - Container Image Loss: **2%**  
-  - Reconstructed Secret Image Loss: **2%**  
-  - PSNR: **41.89 dB**, SSIM: **0.9979**  
-
-- **DRIVE Dataset (Retinal scans)**:  
-  - Container Image Loss: **5%**  
-  - Reconstructed Secret Image Loss: **3%**  
-  - PSNR: **40.98 dB**, SSIM: **0.9935**  
- The proposed system **outperformed GAN, Single AE, and Stacked AE** in accuracy and reconstruction quality.  
+##  Workflow  
+1. **Faculty/Student Login**  
+2. **Upload or Scan Answer Script (Webcam/Phone)**  
+3. **Image Preprocessing & Segmentation**  
+4. **CNN-based Recognition of Handwritten Digits**  
+5. **Automatic Database Update**  
+6. **Mark Display for Faculty & Students**  
+7. **Email Notification Sent**  
 
 ---
+## Results
+- Achieved **~90%** accuracy in handwritten digit recognition.
+
